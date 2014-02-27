@@ -1,0 +1,22 @@
+/* 
+  Localizable.strings
+  THPackaging
+
+  Created by Hao Tang on 14-1-20.
+  Copyright (c) 2014年 nil. All rights reserved.
+*/
+
+"Saving %@" = "保存 %@";
+"Saved %@" = "已保存 %@";
+"Verifying %@" = "验证 %@";
+"Codesigning %@" = "签名 %@";
+"Please try again" = "请重试";
+"Error" = "出错";
+"You must choose an *.ipa file" = "必须选择一个ipa包";
+"You must choose an signing certificate from dropdown." = "你需要选择一个用于签名的证书";
+"Extracting original app" = "正在提取原始包";
+"Original app extracted" = "原始包提取完成";
+"Getting Signing Certificate IDs" = "正在获取证书ID";
+"Signing Certificate IDs extracted" = "证书ID获取完成";
+"Getting Certificate IDs failed" = "获取证书ID失败";
+"Unzip failed" = "解压失败";

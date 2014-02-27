@@ -1,0 +1,329 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		04661BDE18BC4DCF00541414 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C115EE2A13815024003B9ACC /* Cocoa.framework */; };
+		0469DC7118BF3887008EFA95 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 0469DC6118BF3887008EFA95 /* AppDelegate.m */; };
+		0469DC7218BF3887008EFA95 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 0469DC6218BF3887008EFA95 /* InfoPlist.strings */; };
+		0469DC7318BF3887008EFA95 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 0469DC6418BF3887008EFA95 /* Localizable.strings */; };
+		0469DC7418BF3887008EFA95 /* MainMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0469DC6618BF3887008EFA95 /* MainMenu.xib */; };
+		0469DC7518BF3887008EFA95 /* IRTextFieldDrag.m in Sources */ = {isa = PBXBuildFile; fileRef = 0469DC6918BF3887008EFA95 /* IRTextFieldDrag.m */; };
+		0469DC7618BF3887008EFA95 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 0469DC6A18BF3887008EFA95 /* main.m */; };
+		0469DC7718BF3887008EFA95 /* ResourceRules.plist in Resources */ = {isa = PBXBuildFile; fileRef = 0469DC6B18BF3887008EFA95 /* ResourceRules.plist */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXFileReference section */
+		04661B9418BC47B400541414 /* XCTest.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = XCTest.framework; path = Library/Frameworks/XCTest.framework; sourceTree = DEVELOPER_DIR; };
+		04661BE818BC4DCF00541414 /* THPackaging.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = THPackaging.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		0469DC6018BF3887008EFA95 /* AppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
+		0469DC6118BF3887008EFA95 /* AppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
+		0469DC6318BF3887008EFA95 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		0469DC6518BF3887008EFA95 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
+		0469DC6718BF3887008EFA95 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/MainMenu.xib; sourceTree = "<group>"; };
+		0469DC6818BF3887008EFA95 /* IRTextFieldDrag.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IRTextFieldDrag.h; sourceTree = "<group>"; };
+		0469DC6918BF3887008EFA95 /* IRTextFieldDrag.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IRTextFieldDrag.m; sourceTree = "<group>"; };
+		0469DC6A18BF3887008EFA95 /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		0469DC6B18BF3887008EFA95 /* ResourceRules.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = ResourceRules.plist; sourceTree = "<group>"; };
+		0469DC6C18BF3887008EFA95 /* THPackaging-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "THPackaging-Info.plist"; sourceTree = "<group>"; };
+		0469DC6D18BF3887008EFA95 /* THPackaging-Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "THPackaging-Prefix.pch"; sourceTree = "<group>"; };
+		0469DC6E18BF3887008EFA95 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/InfoPlist.strings"; sourceTree = "<group>"; };
+		0469DC6F18BF3887008EFA95 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/Localizable.strings"; sourceTree = "<group>"; };
+		0469DC7018BF3887008EFA95 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = "zh-Hans"; path = "zh-Hans.lproj/MainMenu.xib"; sourceTree = "<group>"; };
+		C115EE2A13815024003B9ACC /* Cocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Cocoa.framework; path = System/Library/Frameworks/Cocoa.framework; sourceTree = SDKROOT; };
+		C115EE2D13815024003B9ACC /* AppKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AppKit.framework; path = System/Library/Frameworks/AppKit.framework; sourceTree = SDKROOT; };
+		C115EE2E13815024003B9ACC /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
+		C115EE2F13815024003B9ACC /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		04661BDD18BC4DCF00541414 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				04661BDE18BC4DCF00541414 /* Cocoa.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		0469DC5F18BF3887008EFA95 /* THPackaging */ = {
+			isa = PBXGroup;
+			children = (
+				0469DC6018BF3887008EFA95 /* AppDelegate.h */,
+				0469DC6118BF3887008EFA95 /* AppDelegate.m */,
+				0469DC6218BF3887008EFA95 /* InfoPlist.strings */,
+				0469DC6418BF3887008EFA95 /* Localizable.strings */,
+				0469DC6618BF3887008EFA95 /* MainMenu.xib */,
+				0469DC6818BF3887008EFA95 /* IRTextFieldDrag.h */,
+				0469DC6918BF3887008EFA95 /* IRTextFieldDrag.m */,
+				0469DC6A18BF3887008EFA95 /* main.m */,
+				0469DC6B18BF3887008EFA95 /* ResourceRules.plist */,
+				0469DC6C18BF3887008EFA95 /* THPackaging-Info.plist */,
+				0469DC6D18BF3887008EFA95 /* THPackaging-Prefix.pch */,
+			);
+			path = THPackaging;
+			sourceTree = "<group>";
+		};
+		C115EE1B13815023003B9ACC = {
+			isa = PBXGroup;
+			children = (
+				0469DC5F18BF3887008EFA95 /* THPackaging */,
+				C115EE2913815024003B9ACC /* Frameworks */,
+				C115EE2713815024003B9ACC /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		C115EE2713815024003B9ACC /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				04661BE818BC4DCF00541414 /* THPackaging.app */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		C115EE2913815024003B9ACC /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				C115EE2A13815024003B9ACC /* Cocoa.framework */,
+				04661B9418BC47B400541414 /* XCTest.framework */,
+				C115EE2C13815024003B9ACC /* Other Frameworks */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		C115EE2C13815024003B9ACC /* Other Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				C115EE2D13815024003B9ACC /* AppKit.framework */,
+				C115EE2E13815024003B9ACC /* CoreData.framework */,
+				C115EE2F13815024003B9ACC /* Foundation.framework */,
+			);
+			name = "Other Frameworks";
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		04661BD818BC4DCF00541414 /* THPackaging */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 04661BE518BC4DCF00541414 /* Build configuration list for PBXNativeTarget "THPackaging" */;
+			buildPhases = (
+				04661BD918BC4DCF00541414 /* Sources */,
+				04661BDD18BC4DCF00541414 /* Frameworks */,
+				04661BDF18BC4DCF00541414 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = THPackaging;
+			productName = iReSign;
+			productReference = 04661BE818BC4DCF00541414 /* THPackaging.app */;
+			productType = "com.apple.product-type.application";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		C115EE1D13815023003B9ACC /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastUpgradeCheck = 0500;
+				ORGANIZATIONNAME = nil;
+			};
+			buildConfigurationList = C115EE2013815023003B9ACC /* Build configuration list for PBXProject "THPackaging" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				"zh-Hans",
+				Base,
+			);
+			mainGroup = C115EE1B13815023003B9ACC;
+			productRefGroup = C115EE2713815024003B9ACC /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				04661BD818BC4DCF00541414 /* THPackaging */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		04661BDF18BC4DCF00541414 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				0469DC7718BF3887008EFA95 /* ResourceRules.plist in Resources */,
+				0469DC7218BF3887008EFA95 /* InfoPlist.strings in Resources */,
+				0469DC7318BF3887008EFA95 /* Localizable.strings in Resources */,
+				0469DC7418BF3887008EFA95 /* MainMenu.xib in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		04661BD918BC4DCF00541414 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				0469DC7518BF3887008EFA95 /* IRTextFieldDrag.m in Sources */,
+				0469DC7618BF3887008EFA95 /* main.m in Sources */,
+				0469DC7118BF3887008EFA95 /* AppDelegate.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXVariantGroup section */
+		0469DC6218BF3887008EFA95 /* InfoPlist.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				0469DC6318BF3887008EFA95 /* en */,
+				0469DC6E18BF3887008EFA95 /* zh-Hans */,
+			);
+			name = InfoPlist.strings;
+			sourceTree = "<group>";
+		};
+		0469DC6418BF3887008EFA95 /* Localizable.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				0469DC6518BF3887008EFA95 /* en */,
+				0469DC6F18BF3887008EFA95 /* zh-Hans */,
+			);
+			name = Localizable.strings;
+			sourceTree = "<group>";
+		};
+		0469DC6618BF3887008EFA95 /* MainMenu.xib */ = {
+			isa = PBXVariantGroup;
+			children = (
+				0469DC6718BF3887008EFA95 /* en */,
+				0469DC7018BF3887008EFA95 /* zh-Hans */,
+			);
+			name = MainMenu.xib;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		04661BE618BC4DCF00541414 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				COMBINE_HIDPI_IMAGES = YES;
+				COPY_PHASE_STRIP = NO;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "THPackaging/THPackaging-Prefix.pch";
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				INFOPLIST_FILE = "THPackaging/THPackaging-Info.plist";
+				MACOSX_DEPLOYMENT_TARGET = 10.6;
+				PRODUCT_NAME = THPackaging;
+				WRAPPER_EXTENSION = app;
+			};
+			name = Debug;
+		};
+		04661BE718BC4DCF00541414 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				COMBINE_HIDPI_IMAGES = YES;
+				COPY_PHASE_STRIP = YES;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "THPackaging/THPackaging-Prefix.pch";
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				INFOPLIST_FILE = "THPackaging/THPackaging-Info.plist";
+				MACOSX_DEPLOYMENT_TARGET = 10.6;
+				PRODUCT_NAME = THPackaging;
+				WRAPPER_EXTENSION = app;
+			};
+			name = Release;
+		};
+		C115EE4213815024003B9ACC /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = DEBUG;
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				MACOSX_DEPLOYMENT_TARGET = 10.6;
+				ONLY_ACTIVE_ARCH = YES;
+				PRODUCT_NAME = THPackaging;
+				SDKROOT = macosx;
+			};
+			name = Debug;
+		};
+		C115EE4313815024003B9ACC /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				MACOSX_DEPLOYMENT_TARGET = 10.6;
+				ONLY_ACTIVE_ARCH = NO;
+				PRODUCT_NAME = THPackaging;
+				SDKROOT = macosx;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		04661BE518BC4DCF00541414 /* Build configuration list for PBXNativeTarget "THPackaging" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				04661BE618BC4DCF00541414 /* Debug */,
+				04661BE718BC4DCF00541414 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		C115EE2013815023003B9ACC /* Build configuration list for PBXProject "THPackaging" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				C115EE4213815024003B9ACC /* Debug */,
+				C115EE4313815024003B9ACC /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = C115EE1D13815023003B9ACC /* Project object */;
+}

@@ -1,0 +1,22 @@
+/* 
+  Localizable.strings
+  THPackaging
+
+  Created by Hao Tang on 14-1-20.
+  Copyright (c) 2014年 nil. All rights reserved.
+*/
+
+"Saving %@" = "Saving %@";
+"Saved %@" = "Saved %@";
+"Verifying %@" = "Verifying %@";
+"Codesigning %@" = "Codesigning %@";
+"Please try again" = "Please try again";
+"Error" = "Error";
+"You must choose an *.ipa file" = "You must choose an *.ipa file";
+"You must choose an signing certificate from dropdown." = "You must choose an signing certificate from dropdown.";
+"Extracting original app" = "Extracting original app";
+"Original app extracted" = "Original app extracted";
+"Getting Signing Certificate IDs" = "Getting Signing Certificate IDs";
+"Signing Certificate IDs extracted" = "Signing Certificate IDs extracted";
+"Getting Certificate IDs failed" = "Getting Certificate IDs failed";
+"Unzip failed" = "Unzip failed";
