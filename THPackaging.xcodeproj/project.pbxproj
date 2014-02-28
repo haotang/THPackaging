@@ -15,6 +15,7 @@
 		0469DC7518BF3887008EFA95 /* IRTextFieldDrag.m in Sources */ = {isa = PBXBuildFile; fileRef = 0469DC6918BF3887008EFA95 /* IRTextFieldDrag.m */; };
 		0469DC7618BF3887008EFA95 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 0469DC6A18BF3887008EFA95 /* main.m */; };
 		0469DC7718BF3887008EFA95 /* ResourceRules.plist in Resources */ = {isa = PBXBuildFile; fileRef = 0469DC6B18BF3887008EFA95 /* ResourceRules.plist */; };
+		04E87CAE18C02D360041C5B2 /* Icon.icns in Resources */ = {isa = PBXBuildFile; fileRef = 04E87CAD18C02D360041C5B2 /* Icon.icns */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -34,6 +35,7 @@
 		0469DC6E18BF3887008EFA95 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/InfoPlist.strings"; sourceTree = "<group>"; };
 		0469DC6F18BF3887008EFA95 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/Localizable.strings"; sourceTree = "<group>"; };
 		0469DC7018BF3887008EFA95 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = "zh-Hans"; path = "zh-Hans.lproj/MainMenu.xib"; sourceTree = "<group>"; };
+		04E87CAD18C02D360041C5B2 /* Icon.icns */ = {isa = PBXFileReference; lastKnownFileType = image.icns; path = Icon.icns; sourceTree = SOURCE_ROOT; };
 		C115EE2A13815024003B9ACC /* Cocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Cocoa.framework; path = System/Library/Frameworks/Cocoa.framework; sourceTree = SDKROOT; };
 		C115EE2D13815024003B9ACC /* AppKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AppKit.framework; path = System/Library/Frameworks/AppKit.framework; sourceTree = SDKROOT; };
 		C115EE2E13815024003B9ACC /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
@@ -57,17 +59,26 @@
 			children = (
 				0469DC6018BF3887008EFA95 /* AppDelegate.h */,
 				0469DC6118BF3887008EFA95 /* AppDelegate.m */,
-				0469DC6218BF3887008EFA95 /* InfoPlist.strings */,
-				0469DC6418BF3887008EFA95 /* Localizable.strings */,
-				0469DC6618BF3887008EFA95 /* MainMenu.xib */,
 				0469DC6818BF3887008EFA95 /* IRTextFieldDrag.h */,
 				0469DC6918BF3887008EFA95 /* IRTextFieldDrag.m */,
+				0469DC6618BF3887008EFA95 /* MainMenu.xib */,
+				04E87CAC18C02D100041C5B2 /* Supporting Fles */,
+			);
+			path = THPackaging;
+			sourceTree = "<group>";
+		};
+		04E87CAC18C02D100041C5B2 /* Supporting Fles */ = {
+			isa = PBXGroup;
+			children = (
+				04E87CAD18C02D360041C5B2 /* Icon.icns */,
+				0469DC6218BF3887008EFA95 /* InfoPlist.strings */,
+				0469DC6418BF3887008EFA95 /* Localizable.strings */,
 				0469DC6A18BF3887008EFA95 /* main.m */,
 				0469DC6B18BF3887008EFA95 /* ResourceRules.plist */,
 				0469DC6C18BF3887008EFA95 /* THPackaging-Info.plist */,
 				0469DC6D18BF3887008EFA95 /* THPackaging-Prefix.pch */,
 			);
-			path = THPackaging;
+			name = "Supporting Fles";
 			sourceTree = "<group>";
 		};
 		C115EE1B13815023003B9ACC = {
@@ -162,6 +173,7 @@
 			files = (
 				0469DC7718BF3887008EFA95 /* ResourceRules.plist in Resources */,
 				0469DC7218BF3887008EFA95 /* InfoPlist.strings in Resources */,
+				04E87CAE18C02D360041C5B2 /* Icon.icns in Resources */,
 				0469DC7318BF3887008EFA95 /* Localizable.strings in Resources */,
 				0469DC7418BF3887008EFA95 /* MainMenu.xib in Resources */,
 			);
