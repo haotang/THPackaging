@@ -14,14 +14,11 @@
         <customObject id="-3" userLabel="Application"/>
         <menu title="AMainMenu" systemMenu="main" id="29">
             <items>
-                <menuItem title="TBPackaging" id="56">
-                    <menu key="submenu" title="TBPackaging" systemMenu="apple" id="57">
+                <menuItem title="THPackaging" id="56">
+                    <menu key="submenu" title="THPackaging" systemMenu="apple" id="57">
                         <items>
-                            <menuItem title="About TBPackaging" id="58">
+                            <menuItem title="About THPackaging" id="58">
                                 <modifierMask key="keyEquivalentModifierMask"/>
-                                <connections>
-                                    <action selector="orderFrontStandardAboutPanel:" target="-2" id="142"/>
-                                </connections>
                             </menuItem>
                             <menuItem isSeparatorItem="YES" id="236">
                                 <modifierMask key="keyEquivalentModifierMask" command="YES"/>
@@ -46,7 +43,7 @@
                                     <action selector="minimizeButtonClocked:" target="494" id="vvO-hJ-SMV"/>
                                 </connections>
                             </menuItem>
-                            <menuItem title="Hide TBPackaging" keyEquivalent="h" id="134">
+                            <menuItem title="Hide THPackaging" keyEquivalent="h" id="134">
                                 <connections>
                                     <action selector="hide:" target="-1" id="367"/>
                                 </connections>
@@ -65,7 +62,7 @@
                             <menuItem isSeparatorItem="YES" id="149">
                                 <modifierMask key="keyEquivalentModifierMask" command="YES"/>
                             </menuItem>
-                            <menuItem title="Quit TBPackaging" keyEquivalent="q" id="136">
+                            <menuItem title="Quit THPackaging" keyEquivalent="q" id="136">
                                 <connections>
                                     <action selector="terminate:" target="-3" id="449"/>
                                 </connections>
@@ -178,10 +175,10 @@
                             <action selector="packaging:" target="494" id="oFv-8f-uZc"/>
                         </connections>
                     </button>
-                    <textField hidden="YES" verticalHuggingPriority="750" id="555">
+                    <textField verticalHuggingPriority="750" id="555">
                         <rect key="frame" x="41" y="3" width="317" height="17"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                        <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" placeholderString="请稍等" id="556">
+                        <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" placeholderString="" id="556">
                             <font key="font" metaFont="system"/>
                             <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
                             <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>

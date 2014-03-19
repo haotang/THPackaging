@@ -20,3 +20,4 @@
 "Signing Certificate IDs extracted" = "Signing Certificate IDs extracted";
 "Getting Certificate IDs failed" = "Getting Certificate IDs failed";
 "Unzip failed" = "Unzip failed";
+"Unrecognizable channel file" = "Unrecognizable channel file, Please make sure that the file using the correct character encoding";

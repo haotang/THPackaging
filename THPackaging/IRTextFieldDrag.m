@@ -23,7 +23,8 @@
             return NO;
         }
         self.stringValue = [files objectAtIndex:0];
-
+        [self selectText:self];
+        [[self currentEditor] setSelectedRange:NSMakeRange([[self stringValue] length], 0)];
     }
     return YES;
 }
@@ -54,5 +55,11 @@
     return NSDragOperationNone;
 }
 
+// Dragging bug in Apple Mac OS SDK: http://stackoverflow.com/questions/9534543/weird-behavior-dragging-from-stacks-to-status-item-doesnt-work
+- (void)draggingEnded:(id<NSDraggingInfo>)sender {
+    if (NSPointInRect([sender draggingLocation], self.frame)) {
+        [self performDragOperation:sender];
+    }
+}
 
 @end

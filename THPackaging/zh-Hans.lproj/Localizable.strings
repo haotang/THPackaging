@@ -20,3 +20,4 @@
 "Signing Certificate IDs extracted" = "证书ID获取完成";
 "Getting Certificate IDs failed" = "获取证书ID失败";
 "Unzip failed" = "解压失败";
+"Unrecognizable channel file" = "渠道号文件无法识别，请确保该文件使用了正确的字符编码";

@@ -114,12 +114,15 @@ static NSString *kCertIndexKey                     = @"CERT_INDEX";
             [self disableControls];
             
             NSLog(@"Setting up working directory in %@",_workingPath);
-            [_statusLabel setHidden:NO];
             [_statusLabel setStringValue:@"Setting up working directory"];
             
             [[NSFileManager defaultManager] removeItemAtPath:_workingPath error:nil];
             
             [[NSFileManager defaultManager] createDirectoryAtPath:_workingPath withIntermediateDirectories:TRUE attributes:nil error:nil];
+            
+            NSString *outputPath = [[_originalIpaPath stringByDeletingLastPathComponent] stringByAppendingPathComponent:kTHPackagingOutput];
+            [[NSFileManager defaultManager] removeItemAtPath:outputPath error:nil];
+            
             [self doUnzip];
         } else {
             NSRunAlertPanel(_(@"Error"),
@@ -200,8 +203,8 @@ static NSString *kCertIndexKey                     = @"CERT_INDEX";
 }
 
 - (IBAction)showHelp:(id)sender {
-    NSRunAlertPanel(@"打包，就是这么简单，THPackaging，你值得拥有",
-                    @"",
+    NSRunAlertPanel(@"THPackaging v1.0.1",
+                    @"Bulk packaging channel IPA and resign IPA tool for Mac",
                     @"OK",nil, nil);
 }
 
@@ -232,7 +235,7 @@ static NSString *kCertIndexKey                     = @"CERT_INDEX";
 #pragma mark - Get certs process
 
 - (void)getCerts {
-    
+    [self startProgressAnimation];
     _getCertsResult = nil;
     
     NSLog(@"Getting Certificate IDs");
@@ -242,8 +245,6 @@ static NSString *kCertIndexKey                     = @"CERT_INDEX";
     [_certTask setLaunchPath:@"/usr/bin/security"];
     [_certTask setArguments:[NSArray arrayWithObjects:@"find-identity", @"-v", @"-p", @"codesigning", nil]];
     
-    [NSTimer scheduledTimerWithTimeInterval:1.0 target:self selector:@selector(checkCerts:) userInfo:nil repeats:TRUE];
-    
     NSPipe *pipe=[NSPipe pipe];
     [_certTask setStandardOutput:pipe];
     [_certTask setStandardError:pipe];
@@ -251,7 +252,14 @@ static NSString *kCertIndexKey                     = @"CERT_INDEX";
     
     [_certTask launch];
     
-    [NSThread detachNewThreadSelector:@selector(watchGetCerts:) toTarget:self withObject:handle];
+    [self addTerminationHandlerForTask:_certTask usingBlock:^{
+        dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
+            [self watchGetCerts:handle];
+            dispatch_async(dispatch_get_main_queue(), ^{
+                [self checkCerts];
+            });
+        });
+    }];
 }
 
 - (void)watchGetCerts:(NSFileHandle*)streamHandle {
@@ -271,30 +279,29 @@ static NSString *kCertIndexKey                     = @"CERT_INDEX";
     
     _certComboBoxItems = [[NSArray arrayWithArray:tempGetCertsResult] retain];
     
-    [_certComboBox reloadData];
-    
     [pool release];
 }
 
-- (void)checkCerts:(NSTimer *)timer {
+- (void)checkCerts {
     if ([_certTask isRunning] == 0) {
-        [timer invalidate];
         [_certTask release];
         _certTask = nil;
         
         if ([_certComboBoxItems count] > 0) {
             NSLog(@"Get Certs done");
+            [_certComboBox reloadData];
+            [self stopProgressAnimation];
             [_statusLabel setStringValue:_(@"Signing Certificate IDs extracted")];
-            
             if ([_defaults valueForKey:kCertIndexKey]) {
-                
                 NSInteger selectedIndex = [[_defaults valueForKey:kCertIndexKey] integerValue];
                 if (selectedIndex != -1) {
                     NSString *selectedItem = [self comboBox:_certComboBox objectValueForItemAtIndex:selectedIndex];
                     [_certComboBox setObjectValue:selectedItem];
-                    [_certComboBox selectItemAtIndex:selectedIndex];
+                    
+                    if (_certComboBoxItems.count > selectedIndex) {
+                        [_certComboBox selectItemAtIndex:selectedIndex];
+                    }
                 }
-                
                 [self enableControls];
             }
         } else {
@@ -318,16 +325,11 @@ static NSString *kCertIndexKey                     = @"CERT_INDEX";
     _unzipTask = [[NSTask alloc] init];
     [_unzipTask setLaunchPath:@"/usr/bin/unzip"];
     [_unzipTask setArguments:[NSArray arrayWithObjects:@"-q", _originalIpaPath, @"-d", [self unzippedIPAPath], nil]];
-    
-    __block id taskComplete;
-    taskComplete = [[NSNotificationCenter defaultCenter] addObserverForName:NSTaskDidTerminateNotification
-                                                                     object:_unzipTask
-                                                                      queue:nil
-                                                                 usingBlock:^(NSNotification *note) {
-                                                                     [[NSNotificationCenter defaultCenter] removeObserver:taskComplete];
-                                                                     [self checkUnzip];
-                                                                 }];
     [_unzipTask launch];
+    
+    [self addTerminationHandlerForTask:_unzipTask usingBlock:^{
+        [self checkUnzip];
+    }];
 }
 
 - (void)checkUnzip {
@@ -353,7 +355,7 @@ static NSString *kCertIndexKey                     = @"CERT_INDEX";
                             _(@"Unzip failed"),
                             @"OK",nil,nil);
             [self enableControls];
-            [_statusLabel setStringValue:@"Ready"];
+            [_statusLabel setStringValue:_(@"Please try again")];
         }
     }
 }
@@ -382,14 +384,9 @@ static NSString *kCertIndexKey                     = @"CERT_INDEX";
     
     [_provisioningTask launch];
     
-    __block id taskComplete;
-    taskComplete = [[NSNotificationCenter defaultCenter] addObserverForName:NSTaskDidTerminateNotification
-                                                                     object:_provisioningTask
-                                                                      queue:nil
-                                                                 usingBlock:^(NSNotification *note) {
-                                                                     [[NSNotificationCenter defaultCenter] removeObserver:self];
-                                                                     [self checkProvisioning];
-                                                                 }];
+    [self addTerminationHandlerForTask:_provisioningTask usingBlock:^{
+        [self checkProvisioning];
+    }];
 }
 
 - (void)checkProvisioning {
@@ -501,15 +498,11 @@ static NSString *kCertIndexKey                     = @"CERT_INDEX";
         [entitlementTask setStandardError:pipe];
         NSFileHandle *handle = [pipe fileHandleForReading];
         [entitlementTask launch];
-        [self watchEntitlements:handle];
-        __block id taskComplete;
-        taskComplete = [[NSNotificationCenter defaultCenter] addObserverForName:NSTaskDidTerminateNotification
-                                                                         object:entitlementTask
-                                                                          queue:nil
-                                                                     usingBlock:^(NSNotification *note) {
-                                                                         [[NSNotificationCenter defaultCenter] removeObserver:taskComplete];
-                                                                         [self doChannelTask];
-                                                                     }];
+        
+        [self addTerminationHandlerForTask:entitlementTask usingBlock:^{
+            [self watchEntitlements:handle];
+            [self doChannelTask];
+        }];
     }
 }
 
@@ -620,12 +613,21 @@ static NSString *kCertIndexKey                     = @"CERT_INDEX";
         
         _channelArray = nil;
     }
-    _channelArray = [[self parseChannelFile:_channelPathField.stringValue] retain];
-    _currentZipTaskIndex = 0;
     
-    if (_channelArray.count > 0) {
-        NSDictionary *channelDict = [_channelArray objectAtIndex:0];
-        [self createChannelFile:channelDict];
+    if (_channelPathField.stringValue.length > 0) {
+        _channelArray = [[self parseChannelFile:_channelPathField.stringValue] retain];
+        _currentZipTaskIndex = 0;
+        
+        if (_channelArray.count > 0) {
+            NSDictionary *channelDict = [_channelArray objectAtIndex:0];
+            [self createChannelFile:channelDict];
+        } else {
+            NSRunAlertPanel(_(@"Error"),
+                            _(@"Unrecognizable channel file"),
+                            @"OK",nil,nil);
+            [self enableControls];
+            [_statusLabel setStringValue:_(@"Please try again")];
+        }
     } else {
         [self doCodeSigning];
     }
@@ -645,7 +647,7 @@ static NSString *kCertIndexKey                     = @"CERT_INDEX";
                         @"Create channel failed",
                         @"OK",nil,nil);
         [self enableControls];
-        [_statusLabel setStringValue:@"Ready"];
+        [_statusLabel setStringValue:_(@"Please try again")];
     }
 }
 
@@ -680,14 +682,10 @@ static NSString *kCertIndexKey                     = @"CERT_INDEX";
         [_codesignTask launch];
         
         [self watchCodesigning:handle];
-        __block id taskComplete;
-        taskComplete = [[NSNotificationCenter defaultCenter] addObserverForName:NSTaskDidTerminateNotification
-                                                                         object:_codesignTask
-                                                                          queue:nil
-                                                                     usingBlock:^(NSNotification *note) {
-                                                                         [[NSNotificationCenter defaultCenter] removeObserver:taskComplete];
-                                                                         [self checkCodesigning];
-                                                                     }];
+        
+        [self addTerminationHandlerForTask:_codesignTask usingBlock:^{
+            [self checkCodesigning];
+        }];
     }
 }
 
@@ -728,14 +726,10 @@ static NSString *kCertIndexKey                     = @"CERT_INDEX";
         [_verifyTask launch];
         
         [self watchVerificationProcess:handle];
-        __block id taskComplete;
-        taskComplete = [[NSNotificationCenter defaultCenter] addObserverForName:NSTaskDidTerminateNotification
-                                                                         object:_verifyTask
-                                                                          queue:nil
-                                                                     usingBlock:^(NSNotification *note) {
-                                                                         [[NSNotificationCenter defaultCenter] removeObserver:taskComplete];
-                                                                         [self checkVerificationProcess];
-                                                                     }];
+        
+        [self addTerminationHandlerForTask:_verifyTask usingBlock:^{
+            [self checkVerificationProcess];
+        }];
     }
 }
 
@@ -796,14 +790,9 @@ static NSString *kCertIndexKey                     = @"CERT_INDEX";
         
         [_zipTask launch];
         
-        __block id taskComplete;
-        taskComplete = [[NSNotificationCenter defaultCenter] addObserverForName:NSTaskDidTerminateNotification
-                                                                         object:_zipTask
-                                                                          queue:nil
-                                                                     usingBlock:^(NSNotification *note) {
-                                                                         [[NSNotificationCenter defaultCenter] removeObserver:taskComplete];
-                                                                         [self checkZip];
-                                                                     }];
+        [self addTerminationHandlerForTask:_zipTask usingBlock:^{
+            [self checkZip];
+        }];
     }
 }
 
@@ -867,10 +856,8 @@ static NSString *kCertIndexKey                     = @"CERT_INDEX";
     [_bundleIDField setEnabled:NO];
     [_certComboBox setEnabled:NO];
     
-    [_flurry startAnimation:self];
-    [_flurry setAlphaValue:1.0];
     [_openOutputButton setEnabled:NO];
-    
+    [self startProgressAnimation];
 }
 
 - (void)enableControls {
@@ -887,14 +874,22 @@ static NSString *kCertIndexKey                     = @"CERT_INDEX";
     [_bundleIDField setEnabled:_changeBundleIDCheckbox.state == NSOnState];
     [_certComboBox setEnabled:YES];
     
-    [_flurry stopAnimation:self];
-    [_flurry setAlphaValue:0.5];
-    
     if (_outputPath.length > 0) {
         [_openOutputButton setEnabled:YES];
     } else {
         [_openOutputButton setEnabled:NO];
     }
+    [self stopProgressAnimation];
+}
+
+- (void)startProgressAnimation {
+    [_flurry startAnimation:self];
+    [_flurry setAlphaValue:1.0];
+}
+
+- (void)stopProgressAnimation {
+    [_flurry stopAnimation:self];
+    [_flurry setAlphaValue:0.5];
 }
 
 #pragma mark - NSComboBoxDataSource
@@ -975,6 +970,19 @@ static NSString *kCertIndexKey                     = @"CERT_INDEX";
         }
     }
     return [NSArray arrayWithArray:channelArray];
+}
+
+- (void)addTerminationHandlerForTask:(NSTask *)task usingBlock:(void (^)())block {
+    __block id taskComplete;
+    taskComplete = [[NSNotificationCenter defaultCenter] addObserverForName:NSTaskDidTerminateNotification
+                                                                     object:nil
+                                                                      queue:nil
+                                                                 usingBlock:^(NSNotification *note) {
+                                                                     [[NSNotificationCenter defaultCenter] removeObserver:taskComplete];
+                                                                     if ([task isEqual:note.object]) {
+                                                                         block();
+                                                                     }
+                                                                 }];
 }
 
 @end
